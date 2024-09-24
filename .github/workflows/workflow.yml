@@ -24,19 +24,5 @@ jobs:
       - name: Install Artillery
         run: npm install -g artillery
 
-      # Step 4: Run Datadog Agent in Docker
-      - name: Run Datadog Agent in Docker
-        env:
-          DD_API_KEY: ${{ secrets.DD_API_KEY }}
-        run: |
-          docker run --rm \
-            -e DD_API_KEY=${{ env.DD_API_KEY }} \
-            -e DD_HOSTNAME=test_setup_gha_hadi \
-            -e DD_SITE="datadoghq.eu" \
-            -e DD_APM_TRACE_BUFFER=100 \
-            -e DD_OTLP_CONFIG_RECEIVER_PROTOCOLS_HTTP_ENDPOINT=0.0.0.0:4318 \
-            -p 4318:4318 \
-            datadog/agent
-
       - name: Run Artillery Test
         run: DEBUG=plugin:publish-metrics:datadog-statsd artillery run config.yml

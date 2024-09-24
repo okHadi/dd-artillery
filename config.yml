@@ -9,20 +9,10 @@ config:
       - type: datadog
         # DD_API_KEY is an environment variable containing the API key
         apiKey: "{{ $env.DD_API_KEY }}"
-        # apiHost: app.datadoghq.eu
+        apiHost: app.datadoghq.eu
         tags:
           - "testId:{{ $testId }}"
           - "reporterType:datadog-api"
-        event:
-          title: "Plugin integration test"
-          priority: normal
-          tags:
-            - "testId:{{ $testId }}"
-        traces:
-          sampleRate: 0.5
-          useRequestNames: true
-          tags:
-            - "testType:LoadTest"
 
 scenarios:
   - flow:
