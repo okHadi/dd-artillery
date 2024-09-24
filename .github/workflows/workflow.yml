@@ -29,7 +29,7 @@ jobs:
         env:
           DD_API_KEY: ${{ secrets.DD_API_KEY }}
         run: |
-          docker run -d --rm \
+          docker run --rm \
             -e DD_API_KEY=${{ env.DD_API_KEY }} \
             -e DD_HOSTNAME=test_setup_gha_hadi \
             -e DD_SITE="datadoghq.eu" \
