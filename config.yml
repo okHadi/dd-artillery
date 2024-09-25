@@ -3,15 +3,15 @@ config:
   phases:
     - duration: 30 # Test duration (in seconds)
       arrivalCount: 10 # Number of new users per second
-plugins:
-publish-metrics:
-  - type: datadog
-    # DD_API_KEY is an environment variable containing the API key
-    apiKey: "{{ $env.DD_API_KEY }}"
-    apiHost: app.datadoghq.eu
-    tags:
-      - "testId:{{ $testId }}"
-      - "reporterType:datadog-api"
+  plugins:
+    publish-metrics:
+      - type: datadog
+        # DD_API_KEY is an environment variable containing the API key
+        apiKey: "{{ $env.DD_API_KEY }}"
+        apiHost: app.datadoghq.eu
+        tags:
+          - "testId:{{ $testId }}"
+          - "reporterType:datadog-api"
 
 scenarios:
   - flow:
